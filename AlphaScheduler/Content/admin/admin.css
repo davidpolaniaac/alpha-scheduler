@@ -1,0 +1,345 @@
+﻿@charset "utf-8";
+@import url(http://meyerweb.com/eric/tools/css/reset/reset.css);
+html {
+    height:100%;
+}
+body {
+    background: #0088cc url('/Content/admin/fondo.png') repeat-x left top;
+    color: #fff;
+    font: 100%/1.5em "Droid Sans", sans-serif;
+    margin: 0;
+}
+input {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    -webkit-appearance: none;
+}
+#wrap {
+    margin: 60px auto 0px auto;
+    width: 400px;
+}
+#logo {
+    margin: 0px auto;
+    width: 300px;
+    height: 160px;
+    background: transparent url('/Content/admin/calamar.png') no-repeat top center;
+}
+#login {
+    margin: 0px auto;
+    width: 350px;
+    text-align:center;
+}
+#footer {
+    text-align:center;
+    margin:30px auto 0px;
+    display:block;
+    width:121px;
+    text-decoration:none;
+    color:#0088cc;
+    font-size:25px;
+    font-family: 'Arial', sans-serif;
+    font-weight:800;
+    letter-spacing:0.05em;
+    position: relative;
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.2);
+}
+/*#footer:before {
+    content: attr(title);
+    position: absolute;
+    z-index:-1;
+    top: -0.03em;
+    left: -0.01em;
+    color:rgba(0,0,0,0.2);
+}*/
+
+/* BOTÓN */
+#boton {
+    margin: 15px 0px 10px;
+    display:inline-block;
+    padding:0.5em 0.8em 0.6em;
+    font-size:20px;
+    background:white;
+    position:relative;
+    font-weight:bold;
+    font-family: 'Signika Negative', sans-serif;
+    line-height: 1em;
+    color:#0088cc;
+    cursor:pointer;
+    border:none;
+    -webkit-transition: transform 0.3s ease-in-out, color 0.1s ease-in-out;
+    transition: transform 0.3s ease-in-out, color 0.1s ease-in-out;
+    border-radius:2px 2px 0px 0px;
+}
+#boton:hover {
+    background:white;
+    color:#005f8e;
+}
+#boton:focus, #boton:active {
+    background:whiteSmoke;
+    transform: translateY(3px);
+    outline:none;
+}
+#boton::after {
+    content:"";
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:-5px;
+    display:block;
+    height:5px;
+    border-radius: 0px 0px 4px 4px;
+    background: rgba(0,0,0,0.15);
+    -webkit-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+#boton:hover::after {
+    background: rgba(0,0,0,0.3);
+}
+#boton:focus::after, #boton:active::after {
+    height:3px;
+    bottom: -3px;
+}
+
+/*** CODROPS ***/
+.input {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	margin: 0.2em;
+	max-width: 100%;
+	width: 99%;
+	vertical-align: top;
+}
+.input__field {
+	position: relative;
+	display: block;
+	float: right;
+	padding: 0.8em;
+	width: 60%;
+	border: none;
+	border-radius: 0;
+	background: #f0f0f0;
+	color: #aaa;
+	font-weight: 400;
+	font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	-webkit-appearance: none; /* for box shadows to show on iOS */
+}
+.input__field:focus {
+	outline: none;
+}
+.graphic {
+	position: absolute;
+	top: 0;
+	left: 0;
+	fill: none;
+}
+.input--kozakura {
+	overflow: hidden;
+	padding-bottom: 0.5em;
+}
+.input--kozakura:focus .label {
+    background:#0047a8;
+}
+.input__field--kozakura {
+	  padding: 0.4em 0.45em;
+  margin-top: 1.1em;
+  width: 80%;
+  background: transparent;
+  color: #00315d;
+  font-size: 1.55em;
+  opacity: 1;
+}
+.graphic--kozakura {
+	fill: white;
+	pointer-events: none;
+	top: 1em;
+	bottom: 0px;
+	height: 4.5em;
+	z-index: -1;
+	-webkit-transition: -webkit-transform 0.7s, fill 0.7s;
+	transition: transform 0.7s, fill 0.7s;
+	-webkit-transition-timing-function: cubic-bezier(0, 0.25, 0.5, 1);
+	transition-timing-function: cubic-bezier(0, 0.25, 0.5, 1);
+} 
+.input__field--kozakura:focus,
+.input--filled .input__field--kozakura {
+	-webkit-transition: opacity 0s 0.35s;
+	transition: opacity 0s 0.35s;
+	opacity: 1;
+}
+.input__field--kozakura:focus ~ .graphic--kozakura,
+.input--filled .graphic--kozakura {
+	fill: #fff;
+	-webkit-transform: translate3d(-66.6%, 0, 0);
+	transform: translate3d(-66.6%, 0, 0);
+}
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color:whiteSmoke !important;
+}
+
+/* ÍCONOS */
+.label {
+  position: absolute;
+  top: 27px;
+  left: 0px;
+  background: #bbb;
+  width: 45px;
+  height: 52px;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-top: 16px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: url("bootstrap/img/glyphicons-halflings-white.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
+.icon-user {
+  background-position: -168px 0;
+}
+.icon-asterisk {
+  background-position: -456px -96px;
+}
+
+/* BURBUJAS */
+html,
+body,
+#bubbles { height: 100% }
+body { overflow: hidden }
+#bubbles { padding: 100px 0 }
+.bubble {
+    width: 60px;
+    height: 60px;
+    background: transparent;
+    border:1px solid white;
+    border-radius: 200px;
+    -moz-border-radius: 200px;
+    -webkit-border-radius: 200px;
+    position: absolute;
+}
+
+.x1 {
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    transform: scale(0.9);
+    opacity: 0.2;
+    -webkit-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    -o-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+}
+
+.x2 {
+    left: 200px;
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    transform: scale(0.6);
+    opacity: 0.5;
+    -webkit-animation: moveclouds 25s linear infinite, sideWays 5s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 25s linear infinite, sideWays 5s ease-in-out infinite alternate;
+    -o-animation: moveclouds 25s linear infinite, sideWays 5s ease-in-out infinite alternate;
+}
+.x3 {
+    left: 350px;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.3;
+    -webkit-animation: moveclouds 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    -o-animation: moveclouds 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+}
+.x4 {
+    left: 470px;
+    -webkit-transform: scale(0.75);
+    -moz-transform: scale(0.75);
+    transform: scale(0.75);
+    opacity: 0.35;
+    -webkit-animation: moveclouds 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+    -o-animation: moveclouds 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+}
+.x5 {
+    left: 150px;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.3; 
+    -webkit-animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
+    -o-animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
+}
+@-webkit-keyframes moveclouds { 
+    0% { 
+        top: 500px;
+    }
+    100% { 
+        top: -500px;
+    }
+}
+
+@-webkit-keyframes sideWays { 
+    0% { 
+        margin-left:0px;
+    }
+    100% { 
+        margin-left:50px;
+    }
+}
+
+@-moz-keyframes moveclouds {     
+    0% { 
+        top: 500px;
+    }
+
+    100% { 
+        top: -500px;
+    }
+}
+
+@-moz-keyframes sideWays {
+    0% {
+        margin-left:0px;
+    }
+    100% {
+        margin-left:50px;
+    }
+}
+@-o-keyframes moveclouds {
+    0% { 
+        top: 500px;
+    }
+    100% { 
+        top: -500px;
+    }
+}
+
+@-o-keyframes sideWays {
+    0% {
+        margin-left:0px;
+    }
+    100% {
+        margin-left:50px;
+    }
+}
+
+/* MEDIA */
+@media all and (max-width:400px) {
+    #wrap {
+        margin: 30px auto 0px;
+        width:auto;
+    }
+    #login {
+        width:100%;
+    }
+    .label {
+          width: 12%;
+    }
+}
