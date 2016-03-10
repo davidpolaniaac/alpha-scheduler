@@ -1,0 +1,1137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBALPHAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="text" Type="nvarchar" MaxLength="250" />
+          <Property Name="start_date" Type="datetime" Nullable="false" />
+          <Property Name="end_date" Type="datetime" Nullable="false" />
+          <Property Name="FK_Id_Modulo" Type="int" />
+          <Property Name="FK_Id_Profesor" Type="int" />
+          <Property Name="Modulo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Profesor" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Facultad">
+          <Key>
+            <PropertyRef Name="Id_Facultad" />
+          </Key>
+          <Property Name="Id_Facultad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FK_Id_Sede" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Linea">
+          <Key>
+            <PropertyRef Name="Id_Linea" />
+          </Key>
+          <Property Name="Id_Linea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="50" />
+          <Property Name="FK_Id_Programa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Materia">
+          <Key>
+            <PropertyRef Name="Id_Materia" />
+          </Key>
+          <Property Name="Id_Materia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FK_Id_Programa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Modulo">
+          <Key>
+            <PropertyRef Name="Id_Modulo" />
+          </Key>
+          <Property Name="Id_Modulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FK_Id_Materia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Modulo_Profesor">
+          <Key>
+            <PropertyRef Name="FK_Id_Modulo" />
+            <PropertyRef Name="FK_Id_Profesor" />
+          </Key>
+          <Property Name="FK_Id_Modulo" Type="int" Nullable="false" />
+          <Property Name="FK_Id_Profesor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pensum">
+          <Key>
+            <PropertyRef Name="Id_Pensum" />
+          </Key>
+          <Property Name="Id_Pensum" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="50" />
+          <Property Name="FK_Id_Linea" Type="int" Nullable="false" />
+          <Property Name="numSemestre" Type="int" />
+        </EntityType>
+        <EntityType Name="Pensum_Materia">
+          <Key>
+            <PropertyRef Name="FK_Id_Pensum" />
+            <PropertyRef Name="FK_id_Materia" />
+          </Key>
+          <Property Name="FK_Id_Pensum" Type="int" Nullable="false" />
+          <Property Name="FK_id_Materia" Type="int" Nullable="false" />
+          <Property Name="Creditos" Type="int" Nullable="false" />
+          <Property Name="semestre" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profesor">
+          <Key>
+            <PropertyRef Name="Id_Profesor" />
+          </Key>
+          <Property Name="Id_Profesor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FK_Id_Sede" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Programa">
+          <Key>
+            <PropertyRef Name="Id_Programa" />
+          </Key>
+          <Property Name="Id_Programa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="50" />
+          <Property Name="FK_Id_Facultad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sede">
+          <Key>
+            <PropertyRef Name="Id_Sede" />
+          </Key>
+          <Property Name="Id_Sede" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ubicacion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewFacultad' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ViewFacultad">
+          <Key>
+            <PropertyRef Name="Id_Facultad" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="FK_Id_Sede" />
+            <PropertyRef Name="nombreSede" />
+          </Key>
+          <Property Name="Id_Facultad" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FK_Id_Sede" Type="int" Nullable="false" />
+          <Property Name="nombreSede" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewLinea' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ViewLinea">
+          <Key>
+            <PropertyRef Name="Id_Linea" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="FK_Id_Programa" />
+            <PropertyRef Name="nombrePrograma" />
+            <PropertyRef Name="FK_Id_Facultad" />
+            <PropertyRef Name="nombreFacultad" />
+            <PropertyRef Name="FK_Id_Sede" />
+            <PropertyRef Name="nombreSede" />
+          </Key>
+          <Property Name="Id_Linea" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="50" />
+          <Property Name="FK_Id_Programa" Type="int" Nullable="false" />
+          <Property Name="nombrePrograma" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FK_Id_Facultad" Type="int" Nullable="false" />
+          <Property Name="nombreFacultad" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FK_Id_Sede" Type="int" Nullable="false" />
+          <Property Name="nombreSede" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewMateria' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ViewMateria">
+          <Key>
+            <PropertyRef Name="Id_Materia" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="FK_Id_Programa" />
+            <PropertyRef Name="nombrePrograma" />
+          </Key>
+          <Property Name="Id_Materia" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FK_Id_Programa" Type="int" Nullable="false" />
+          <Property Name="nombrePrograma" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewMateriaPensum' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ViewMateriaPensum">
+          <Key>
+            <PropertyRef Name="nombrePensum" />
+            <PropertyRef Name="Creditos" />
+            <PropertyRef Name="semestre" />
+            <PropertyRef Name="nombreMateria" />
+            <PropertyRef Name="nombreLinea" />
+            <PropertyRef Name="FK_Id_Pensum" />
+            <PropertyRef Name="nombrePrograma" />
+            <PropertyRef Name="nombreFacultad" />
+            <PropertyRef Name="nombreSede" />
+          </Key>
+          <Property Name="nombrePensum" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Creditos" Type="int" Nullable="false" />
+          <Property Name="semestre" Type="int" Nullable="false" />
+          <Property Name="nombreMateria" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombreLinea" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FK_Id_Pensum" Type="int" Nullable="false" />
+          <Property Name="nombrePrograma" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="nombreFacultad" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="nombreSede" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewPensum' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ViewPensum">
+          <Key>
+            <PropertyRef Name="Id_Pensum" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="FK_Id_Linea" />
+            <PropertyRef Name="nombreLinea" />
+            <PropertyRef Name="FK_Id_Programa" />
+            <PropertyRef Name="nombrePrograma" />
+            <PropertyRef Name="FK_Id_Facultad" />
+            <PropertyRef Name="nombreFacultad" />
+            <PropertyRef Name="FK_Id_Sede" />
+            <PropertyRef Name="nombreSede" />
+          </Key>
+          <Property Name="Id_Pensum" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="50" />
+          <Property Name="FK_Id_Linea" Type="int" Nullable="false" />
+          <Property Name="nombreLinea" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FK_Id_Programa" Type="int" Nullable="false" />
+          <Property Name="nombrePrograma" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="FK_Id_Facultad" Type="int" Nullable="false" />
+          <Property Name="nombreFacultad" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FK_Id_Sede" Type="int" Nullable="false" />
+          <Property Name="nombreSede" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewPrograma' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="ViewPrograma">
+          <Key>
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Id_Programa" />
+            <PropertyRef Name="FK_Id_Facultad" />
+            <PropertyRef Name="FK_Id_Sede" />
+            <PropertyRef Name="nombreFacultad" />
+            <PropertyRef Name="nombreSede" />
+          </Key>
+          <Property Name="Codigo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Id_Programa" Type="int" Nullable="false" />
+          <Property Name="FK_Id_Facultad" Type="int" Nullable="false" />
+          <Property Name="FK_Id_Sede" Type="int" Nullable="false" />
+          <Property Name="nombreFacultad" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="nombreSede" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Event_Modulo">
+          <End Role="Modulo" Type="Self.Modulo" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulo">
+              <PropertyRef Name="Id_Modulo" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="FK_Id_Modulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Profesor">
+          <End Role="Profesor" Type="Self.Profesor" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="Id_Profesor" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="FK_Id_Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Linea_Programa">
+          <End Role="Programa" Type="Self.Programa" Multiplicity="1" />
+          <End Role="Linea" Type="Self.Linea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programa">
+              <PropertyRef Name="Id_Programa" />
+            </Principal>
+            <Dependent Role="Linea">
+              <PropertyRef Name="FK_Id_Programa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materia_Programa">
+          <End Role="Programa" Type="Self.Programa" Multiplicity="1" />
+          <End Role="Materia" Type="Self.Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programa">
+              <PropertyRef Name="Id_Programa" />
+            </Principal>
+            <Dependent Role="Materia">
+              <PropertyRef Name="FK_Id_Programa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Modulo_Materia">
+          <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
+          <End Role="Modulo" Type="Self.Modulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materia">
+              <PropertyRef Name="Id_Materia" />
+            </Principal>
+            <Dependent Role="Modulo">
+              <PropertyRef Name="FK_Id_Materia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Modulo_Profesor_Modulo">
+          <End Role="Modulo" Type="Self.Modulo" Multiplicity="1" />
+          <End Role="Modulo_Profesor" Type="Self.Modulo_Profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulo">
+              <PropertyRef Name="Id_Modulo" />
+            </Principal>
+            <Dependent Role="Modulo_Profesor">
+              <PropertyRef Name="FK_Id_Modulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Modulo_Profesor_Profesor">
+          <End Role="Profesor" Type="Self.Profesor" Multiplicity="1" />
+          <End Role="Modulo_Profesor" Type="Self.Modulo_Profesor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="Id_Profesor" />
+            </Principal>
+            <Dependent Role="Modulo_Profesor">
+              <PropertyRef Name="FK_Id_Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pensum_Linea">
+          <End Role="Linea" Type="Self.Linea" Multiplicity="1" />
+          <End Role="Pensum" Type="Self.Pensum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Linea">
+              <PropertyRef Name="Id_Linea" />
+            </Principal>
+            <Dependent Role="Pensum">
+              <PropertyRef Name="FK_Id_Linea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pensum_Materia_Materia">
+          <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
+          <End Role="Pensum_Materia" Type="Self.Pensum_Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materia">
+              <PropertyRef Name="Id_Materia" />
+            </Principal>
+            <Dependent Role="Pensum_Materia">
+              <PropertyRef Name="FK_id_Materia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pensum_Materia_Pensum">
+          <End Role="Pensum" Type="Self.Pensum" Multiplicity="1" />
+          <End Role="Pensum_Materia" Type="Self.Pensum_Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pensum">
+              <PropertyRef Name="Id_Pensum" />
+            </Principal>
+            <Dependent Role="Pensum_Materia">
+              <PropertyRef Name="FK_Id_Pensum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Programa_Facultad">
+          <End Role="Facultad" Type="Self.Facultad" Multiplicity="1" />
+          <End Role="Programa" Type="Self.Programa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultad">
+              <PropertyRef Name="Id_Facultad" />
+            </Principal>
+            <Dependent Role="Programa">
+              <PropertyRef Name="FK_Id_Facultad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sede_Facultad">
+          <End Role="Sede" Type="Self.Sede" Multiplicity="1" />
+          <End Role="Facultad" Type="Self.Facultad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sede">
+              <PropertyRef Name="Id_Sede" />
+            </Principal>
+            <Dependent Role="Facultad">
+              <PropertyRef Name="FK_Id_Sede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBALPHAModelStoreContainer">
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facultad" EntityType="Self.Facultad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Linea" EntityType="Self.Linea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materia" EntityType="Self.Materia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modulo" EntityType="Self.Modulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modulo_Profesor" EntityType="Self.Modulo_Profesor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pensum" EntityType="Self.Pensum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pensum_Materia" EntityType="Self.Pensum_Materia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profesor" EntityType="Self.Profesor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Programa" EntityType="Self.Programa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sede" EntityType="Self.Sede" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ViewFacultad" EntityType="Self.ViewFacultad" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewFacultad].[Id_Facultad] AS [Id_Facultad], 
+    [ViewFacultad].[Nombre] AS [Nombre], 
+    [ViewFacultad].[FK_Id_Sede] AS [FK_Id_Sede], 
+    [ViewFacultad].[nombreSede] AS [nombreSede]
+    FROM [dbo].[ViewFacultad] AS [ViewFacultad]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewLinea" EntityType="Self.ViewLinea" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewLinea].[Id_Linea] AS [Id_Linea], 
+    [ViewLinea].[Nombre] AS [Nombre], 
+    [ViewLinea].[Codigo] AS [Codigo], 
+    [ViewLinea].[FK_Id_Programa] AS [FK_Id_Programa], 
+    [ViewLinea].[nombrePrograma] AS [nombrePrograma], 
+    [ViewLinea].[FK_Id_Facultad] AS [FK_Id_Facultad], 
+    [ViewLinea].[nombreFacultad] AS [nombreFacultad], 
+    [ViewLinea].[FK_Id_Sede] AS [FK_Id_Sede], 
+    [ViewLinea].[nombreSede] AS [nombreSede]
+    FROM [dbo].[ViewLinea] AS [ViewLinea]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewMateria" EntityType="Self.ViewMateria" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewMateria].[Id_Materia] AS [Id_Materia], 
+    [ViewMateria].[Nombre] AS [Nombre], 
+    [ViewMateria].[FK_Id_Programa] AS [FK_Id_Programa], 
+    [ViewMateria].[nombrePrograma] AS [nombrePrograma]
+    FROM [dbo].[ViewMateria] AS [ViewMateria]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewMateriaPensum" EntityType="Self.ViewMateriaPensum" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewMateriaPensum].[nombrePensum] AS [nombrePensum], 
+    [ViewMateriaPensum].[Creditos] AS [Creditos], 
+    [ViewMateriaPensum].[semestre] AS [semestre], 
+    [ViewMateriaPensum].[nombreMateria] AS [nombreMateria], 
+    [ViewMateriaPensum].[nombreLinea] AS [nombreLinea], 
+    [ViewMateriaPensum].[FK_Id_Pensum] AS [FK_Id_Pensum], 
+    [ViewMateriaPensum].[nombrePrograma] AS [nombrePrograma], 
+    [ViewMateriaPensum].[nombreFacultad] AS [nombreFacultad], 
+    [ViewMateriaPensum].[nombreSede] AS [nombreSede]
+    FROM [dbo].[ViewMateriaPensum] AS [ViewMateriaPensum]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewPensum" EntityType="Self.ViewPensum" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewPensum].[Id_Pensum] AS [Id_Pensum], 
+    [ViewPensum].[Nombre] AS [Nombre], 
+    [ViewPensum].[Codigo] AS [Codigo], 
+    [ViewPensum].[FK_Id_Linea] AS [FK_Id_Linea], 
+    [ViewPensum].[nombreLinea] AS [nombreLinea], 
+    [ViewPensum].[FK_Id_Programa] AS [FK_Id_Programa], 
+    [ViewPensum].[nombrePrograma] AS [nombrePrograma], 
+    [ViewPensum].[FK_Id_Facultad] AS [FK_Id_Facultad], 
+    [ViewPensum].[nombreFacultad] AS [nombreFacultad], 
+    [ViewPensum].[FK_Id_Sede] AS [FK_Id_Sede], 
+    [ViewPensum].[nombreSede] AS [nombreSede]
+    FROM [dbo].[ViewPensum] AS [ViewPensum]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ViewPrograma" EntityType="Self.ViewPrograma" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewPrograma].[Codigo] AS [Codigo], 
+    [ViewPrograma].[Nombre] AS [Nombre], 
+    [ViewPrograma].[Id_Programa] AS [Id_Programa], 
+    [ViewPrograma].[FK_Id_Facultad] AS [FK_Id_Facultad], 
+    [ViewPrograma].[FK_Id_Sede] AS [FK_Id_Sede], 
+    [ViewPrograma].[nombreFacultad] AS [nombreFacultad], 
+    [ViewPrograma].[nombreSede] AS [nombreSede]
+    FROM [dbo].[ViewPrograma] AS [ViewPrograma]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Event_Modulo" Association="Self.FK_Event_Modulo">
+            <End Role="Modulo" EntitySet="Modulo" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Profesor" Association="Self.FK_Event_Profesor">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Linea_Programa" Association="Self.FK_Linea_Programa">
+            <End Role="Programa" EntitySet="Programa" />
+            <End Role="Linea" EntitySet="Linea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materia_Programa" Association="Self.FK_Materia_Programa">
+            <End Role="Programa" EntitySet="Programa" />
+            <End Role="Materia" EntitySet="Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Modulo_Materia" Association="Self.FK_Modulo_Materia">
+            <End Role="Materia" EntitySet="Materia" />
+            <End Role="Modulo" EntitySet="Modulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Modulo_Profesor_Modulo" Association="Self.FK_Modulo_Profesor_Modulo">
+            <End Role="Modulo" EntitySet="Modulo" />
+            <End Role="Modulo_Profesor" EntitySet="Modulo_Profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Modulo_Profesor_Profesor" Association="Self.FK_Modulo_Profesor_Profesor">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="Modulo_Profesor" EntitySet="Modulo_Profesor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pensum_Linea" Association="Self.FK_Pensum_Linea">
+            <End Role="Linea" EntitySet="Linea" />
+            <End Role="Pensum" EntitySet="Pensum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pensum_Materia_Materia" Association="Self.FK_Pensum_Materia_Materia">
+            <End Role="Materia" EntitySet="Materia" />
+            <End Role="Pensum_Materia" EntitySet="Pensum_Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pensum_Materia_Pensum" Association="Self.FK_Pensum_Materia_Pensum">
+            <End Role="Pensum" EntitySet="Pensum" />
+            <End Role="Pensum_Materia" EntitySet="Pensum_Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Programa_Facultad" Association="Self.FK_Programa_Facultad">
+            <End Role="Facultad" EntitySet="Facultad" />
+            <End Role="Programa" EntitySet="Programa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sede_Facultad" Association="Self.FK_Sede_Facultad">
+            <End Role="Sede" EntitySet="Sede" />
+            <End Role="Facultad" EntitySet="Facultad" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBALPHAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="text" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FK_Id_Modulo" Type="Int32" />
+          <Property Name="FK_Id_Profesor" Type="Int32" />
+          <Property Name="Modulo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Profesor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Modulo1" Relationship="Self.FK_Event_Modulo" FromRole="Event" ToRole="Modulo" />
+          <NavigationProperty Name="Profesor1" Relationship="Self.FK_Event_Profesor" FromRole="Event" ToRole="Profesor" />
+        </EntityType>
+        <EntityType Name="Facultad">
+          <Key>
+            <PropertyRef Name="Id_Facultad" />
+          </Key>
+          <Property Name="Id_Facultad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_Id_Sede" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Programa" Relationship="Self.FK_Programa_Facultad" FromRole="Facultad" ToRole="Programa" />
+          <NavigationProperty Name="Sede" Relationship="Self.FK_Sede_Facultad" FromRole="Facultad" ToRole="Sede" />
+        </EntityType>
+        <EntityType Name="Linea">
+          <Key>
+            <PropertyRef Name="Id_Linea" />
+          </Key>
+          <Property Name="Id_Linea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Id_Programa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Programa" Relationship="Self.FK_Linea_Programa" FromRole="Linea" ToRole="Programa" />
+          <NavigationProperty Name="Pensum" Relationship="Self.FK_Pensum_Linea" FromRole="Linea" ToRole="Pensum" />
+        </EntityType>
+        <EntityType Name="Materia">
+          <Key>
+            <PropertyRef Name="Id_Materia" />
+          </Key>
+          <Property Name="Id_Materia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_Id_Programa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Programa" Relationship="Self.FK_Materia_Programa" FromRole="Materia" ToRole="Programa" />
+          <NavigationProperty Name="Modulo" Relationship="Self.FK_Modulo_Materia" FromRole="Materia" ToRole="Modulo" />
+          <NavigationProperty Name="Pensum_Materia" Relationship="Self.FK_Pensum_Materia_Materia" FromRole="Materia" ToRole="Pensum_Materia" />
+        </EntityType>
+        <EntityType Name="Modulo">
+          <Key>
+            <PropertyRef Name="Id_Modulo" />
+          </Key>
+          <Property Name="Id_Modulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_Id_Materia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Event_Modulo" FromRole="Modulo" ToRole="Event" />
+          <NavigationProperty Name="Materia" Relationship="Self.FK_Modulo_Materia" FromRole="Modulo" ToRole="Materia" />
+          <NavigationProperty Name="Profesor" Relationship="Self.Modulo_Profesor" FromRole="Modulo" ToRole="Profesor" />
+        </EntityType>
+        <EntityType Name="Pensum">
+          <Key>
+            <PropertyRef Name="Id_Pensum" />
+          </Key>
+          <Property Name="Id_Pensum" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Id_Linea" Type="Int32" Nullable="false" />
+          <Property Name="numSemestre" Type="Int32" />
+          <NavigationProperty Name="Linea" Relationship="Self.FK_Pensum_Linea" FromRole="Pensum" ToRole="Linea" />
+          <NavigationProperty Name="Pensum_Materia" Relationship="Self.FK_Pensum_Materia_Pensum" FromRole="Pensum" ToRole="Pensum_Materia" />
+        </EntityType>
+        <EntityType Name="Pensum_Materia">
+          <Key>
+            <PropertyRef Name="FK_Id_Pensum" />
+            <PropertyRef Name="FK_id_Materia" />
+          </Key>
+          <Property Name="FK_Id_Pensum" Type="Int32" Nullable="false" />
+          <Property Name="FK_id_Materia" Type="Int32" Nullable="false" />
+          <Property Name="Creditos" Type="Int32" Nullable="false" />
+          <Property Name="semestre" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Materia" Relationship="Self.FK_Pensum_Materia_Materia" FromRole="Pensum_Materia" ToRole="Materia" />
+          <NavigationProperty Name="Pensum" Relationship="Self.FK_Pensum_Materia_Pensum" FromRole="Pensum_Materia" ToRole="Pensum" />
+        </EntityType>
+        <EntityType Name="Profesor">
+          <Key>
+            <PropertyRef Name="Id_Profesor" />
+          </Key>
+          <Property Name="Id_Profesor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_Id_Sede" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Event_Profesor" FromRole="Profesor" ToRole="Event" />
+          <NavigationProperty Name="Modulo" Relationship="Self.Modulo_Profesor" FromRole="Profesor" ToRole="Modulo" />
+        </EntityType>
+        <EntityType Name="Programa">
+          <Key>
+            <PropertyRef Name="Id_Programa" />
+          </Key>
+          <Property Name="Id_Programa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Id_Facultad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Facultad" Relationship="Self.FK_Programa_Facultad" FromRole="Programa" ToRole="Facultad" />
+          <NavigationProperty Name="Linea" Relationship="Self.FK_Linea_Programa" FromRole="Programa" ToRole="Linea" />
+          <NavigationProperty Name="Materia" Relationship="Self.FK_Materia_Programa" FromRole="Programa" ToRole="Materia" />
+        </EntityType>
+        <EntityType Name="Sede">
+          <Key>
+            <PropertyRef Name="Id_Sede" />
+          </Key>
+          <Property Name="Id_Sede" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ubicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Facultad" Relationship="Self.FK_Sede_Facultad" FromRole="Sede" ToRole="Facultad" />
+        </EntityType>
+        <EntityType Name="ViewFacultad">
+          <Key>
+            <PropertyRef Name="Id_Facultad" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="FK_Id_Sede" />
+            <PropertyRef Name="nombreSede" />
+          </Key>
+          <Property Name="Id_Facultad" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_Id_Sede" Type="Int32" Nullable="false" />
+          <Property Name="nombreSede" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewLinea">
+          <Key>
+            <PropertyRef Name="Id_Linea" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="FK_Id_Programa" />
+            <PropertyRef Name="nombrePrograma" />
+            <PropertyRef Name="FK_Id_Facultad" />
+            <PropertyRef Name="nombreFacultad" />
+            <PropertyRef Name="FK_Id_Sede" />
+            <PropertyRef Name="nombreSede" />
+          </Key>
+          <Property Name="Id_Linea" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Id_Programa" Type="Int32" Nullable="false" />
+          <Property Name="nombrePrograma" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_Id_Facultad" Type="Int32" Nullable="false" />
+          <Property Name="nombreFacultad" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_Id_Sede" Type="Int32" Nullable="false" />
+          <Property Name="nombreSede" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewMateria">
+          <Key>
+            <PropertyRef Name="Id_Materia" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="FK_Id_Programa" />
+            <PropertyRef Name="nombrePrograma" />
+          </Key>
+          <Property Name="Id_Materia" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_Id_Programa" Type="Int32" Nullable="false" />
+          <Property Name="nombrePrograma" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewMateriaPensum">
+          <Key>
+            <PropertyRef Name="nombrePensum" />
+            <PropertyRef Name="Creditos" />
+            <PropertyRef Name="semestre" />
+            <PropertyRef Name="nombreMateria" />
+            <PropertyRef Name="nombreLinea" />
+            <PropertyRef Name="FK_Id_Pensum" />
+            <PropertyRef Name="nombrePrograma" />
+            <PropertyRef Name="nombreFacultad" />
+            <PropertyRef Name="nombreSede" />
+          </Key>
+          <Property Name="nombrePensum" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Creditos" Type="Int32" Nullable="false" />
+          <Property Name="semestre" Type="Int32" Nullable="false" />
+          <Property Name="nombreMateria" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombreLinea" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_Id_Pensum" Type="Int32" Nullable="false" />
+          <Property Name="nombrePrograma" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombreFacultad" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombreSede" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewPensum">
+          <Key>
+            <PropertyRef Name="Id_Pensum" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="FK_Id_Linea" />
+            <PropertyRef Name="nombreLinea" />
+            <PropertyRef Name="FK_Id_Programa" />
+            <PropertyRef Name="nombrePrograma" />
+            <PropertyRef Name="FK_Id_Facultad" />
+            <PropertyRef Name="nombreFacultad" />
+            <PropertyRef Name="FK_Id_Sede" />
+            <PropertyRef Name="nombreSede" />
+          </Key>
+          <Property Name="Id_Pensum" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Id_Linea" Type="Int32" Nullable="false" />
+          <Property Name="nombreLinea" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_Id_Programa" Type="Int32" Nullable="false" />
+          <Property Name="nombrePrograma" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_Id_Facultad" Type="Int32" Nullable="false" />
+          <Property Name="nombreFacultad" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FK_Id_Sede" Type="Int32" Nullable="false" />
+          <Property Name="nombreSede" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ViewPrograma">
+          <Key>
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Id_Programa" />
+            <PropertyRef Name="FK_Id_Facultad" />
+            <PropertyRef Name="FK_Id_Sede" />
+            <PropertyRef Name="nombreFacultad" />
+            <PropertyRef Name="nombreSede" />
+          </Key>
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_Programa" Type="Int32" Nullable="false" />
+          <Property Name="FK_Id_Facultad" Type="Int32" Nullable="false" />
+          <Property Name="FK_Id_Sede" Type="Int32" Nullable="false" />
+          <Property Name="nombreFacultad" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombreSede" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Event_Modulo">
+          <End Role="Modulo" Type="Self.Modulo" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulo">
+              <PropertyRef Name="Id_Modulo" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="FK_Id_Modulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Profesor">
+          <End Role="Profesor" Type="Self.Profesor" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesor">
+              <PropertyRef Name="Id_Profesor" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="FK_Id_Profesor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Programa_Facultad">
+          <End Role="Facultad" Type="Self.Facultad" Multiplicity="1" />
+          <End Role="Programa" Type="Self.Programa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultad">
+              <PropertyRef Name="Id_Facultad" />
+            </Principal>
+            <Dependent Role="Programa">
+              <PropertyRef Name="FK_Id_Facultad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sede_Facultad">
+          <End Role="Sede" Type="Self.Sede" Multiplicity="1" />
+          <End Role="Facultad" Type="Self.Facultad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sede">
+              <PropertyRef Name="Id_Sede" />
+            </Principal>
+            <Dependent Role="Facultad">
+              <PropertyRef Name="FK_Id_Sede" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Linea_Programa">
+          <End Role="Programa" Type="Self.Programa" Multiplicity="1" />
+          <End Role="Linea" Type="Self.Linea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programa">
+              <PropertyRef Name="Id_Programa" />
+            </Principal>
+            <Dependent Role="Linea">
+              <PropertyRef Name="FK_Id_Programa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pensum_Linea">
+          <End Role="Linea" Type="Self.Linea" Multiplicity="1" />
+          <End Role="Pensum" Type="Self.Pensum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Linea">
+              <PropertyRef Name="Id_Linea" />
+            </Principal>
+            <Dependent Role="Pensum">
+              <PropertyRef Name="FK_Id_Linea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materia_Programa">
+          <End Role="Programa" Type="Self.Programa" Multiplicity="1" />
+          <End Role="Materia" Type="Self.Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programa">
+              <PropertyRef Name="Id_Programa" />
+            </Principal>
+            <Dependent Role="Materia">
+              <PropertyRef Name="FK_Id_Programa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Modulo_Materia">
+          <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
+          <End Role="Modulo" Type="Self.Modulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materia">
+              <PropertyRef Name="Id_Materia" />
+            </Principal>
+            <Dependent Role="Modulo">
+              <PropertyRef Name="FK_Id_Materia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pensum_Materia_Materia">
+          <End Role="Materia" Type="Self.Materia" Multiplicity="1" />
+          <End Role="Pensum_Materia" Type="Self.Pensum_Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materia">
+              <PropertyRef Name="Id_Materia" />
+            </Principal>
+            <Dependent Role="Pensum_Materia">
+              <PropertyRef Name="FK_id_Materia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pensum_Materia_Pensum">
+          <End Role="Pensum" Type="Self.Pensum" Multiplicity="1" />
+          <End Role="Pensum_Materia" Type="Self.Pensum_Materia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pensum">
+              <PropertyRef Name="Id_Pensum" />
+            </Principal>
+            <Dependent Role="Pensum_Materia">
+              <PropertyRef Name="FK_Id_Pensum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Modulo_Profesor">
+          <End Role="Modulo" Type="Self.Modulo" Multiplicity="*" />
+          <End Role="Profesor" Type="Self.Profesor" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DBALPHAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Event" EntityType="Self.Event" />
+          <EntitySet Name="Facultad" EntityType="Self.Facultad" />
+          <EntitySet Name="Linea" EntityType="Self.Linea" />
+          <EntitySet Name="Materia" EntityType="Self.Materia" />
+          <EntitySet Name="Modulo" EntityType="Self.Modulo" />
+          <EntitySet Name="Pensum" EntityType="Self.Pensum" />
+          <EntitySet Name="Pensum_Materia" EntityType="Self.Pensum_Materia" />
+          <EntitySet Name="Profesor" EntityType="Self.Profesor" />
+          <EntitySet Name="Programa" EntityType="Self.Programa" />
+          <EntitySet Name="Sede" EntityType="Self.Sede" />
+          <EntitySet Name="ViewFacultad" EntityType="Self.ViewFacultad" />
+          <EntitySet Name="ViewLinea" EntityType="Self.ViewLinea" />
+          <EntitySet Name="ViewMateria" EntityType="Self.ViewMateria" />
+          <EntitySet Name="ViewMateriaPensum" EntityType="Self.ViewMateriaPensum" />
+          <EntitySet Name="ViewPensum" EntityType="Self.ViewPensum" />
+          <EntitySet Name="ViewPrograma" EntityType="Self.ViewPrograma" />
+          <AssociationSet Name="FK_Event_Modulo" Association="Self.FK_Event_Modulo">
+            <End Role="Modulo" EntitySet="Modulo" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Profesor" Association="Self.FK_Event_Profesor">
+            <End Role="Profesor" EntitySet="Profesor" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Programa_Facultad" Association="Self.FK_Programa_Facultad">
+            <End Role="Facultad" EntitySet="Facultad" />
+            <End Role="Programa" EntitySet="Programa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sede_Facultad" Association="Self.FK_Sede_Facultad">
+            <End Role="Sede" EntitySet="Sede" />
+            <End Role="Facultad" EntitySet="Facultad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Linea_Programa" Association="Self.FK_Linea_Programa">
+            <End Role="Programa" EntitySet="Programa" />
+            <End Role="Linea" EntitySet="Linea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pensum_Linea" Association="Self.FK_Pensum_Linea">
+            <End Role="Linea" EntitySet="Linea" />
+            <End Role="Pensum" EntitySet="Pensum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materia_Programa" Association="Self.FK_Materia_Programa">
+            <End Role="Programa" EntitySet="Programa" />
+            <End Role="Materia" EntitySet="Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Modulo_Materia" Association="Self.FK_Modulo_Materia">
+            <End Role="Materia" EntitySet="Materia" />
+            <End Role="Modulo" EntitySet="Modulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pensum_Materia_Materia" Association="Self.FK_Pensum_Materia_Materia">
+            <End Role="Materia" EntitySet="Materia" />
+            <End Role="Pensum_Materia" EntitySet="Pensum_Materia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pensum_Materia_Pensum" Association="Self.FK_Pensum_Materia_Pensum">
+            <End Role="Pensum" EntitySet="Pensum" />
+            <End Role="Pensum_Materia" EntitySet="Pensum_Materia" />
+          </AssociationSet>
+          <AssociationSet Name="Modulo_Profesor" Association="Self.Modulo_Profesor">
+            <End Role="Modulo" EntitySet="Modulo" />
+            <End Role="Profesor" EntitySet="Profesor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBALPHAModelStoreContainer" CdmEntityContainer="DBALPHAEntities">
+          <EntitySetMapping Name="Event">
+            <EntityTypeMapping TypeName="DBALPHAModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="FK_Id_Modulo" ColumnName="FK_Id_Modulo" />
+                <ScalarProperty Name="FK_Id_Profesor" ColumnName="FK_Id_Profesor" />
+                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+                <ScalarProperty Name="Profesor" ColumnName="Profesor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facultad">
+            <EntityTypeMapping TypeName="DBALPHAModel.Facultad">
+              <MappingFragment StoreEntitySet="Facultad">
+                <ScalarProperty Name="Id_Facultad" ColumnName="Id_Facultad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FK_Id_Sede" ColumnName="FK_Id_Sede" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Linea">
+            <EntityTypeMapping TypeName="DBALPHAModel.Linea">
+              <MappingFragment StoreEntitySet="Linea">
+                <ScalarProperty Name="Id_Linea" ColumnName="Id_Linea" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="FK_Id_Programa" ColumnName="FK_Id_Programa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materia">
+            <EntityTypeMapping TypeName="DBALPHAModel.Materia">
+              <MappingFragment StoreEntitySet="Materia">
+                <ScalarProperty Name="Id_Materia" ColumnName="Id_Materia" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="FK_Id_Programa" ColumnName="FK_Id_Programa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modulo">
+            <EntityTypeMapping TypeName="DBALPHAModel.Modulo">
+              <MappingFragment StoreEntitySet="Modulo">
+                <ScalarProperty Name="Id_Modulo" ColumnName="Id_Modulo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FK_Id_Materia" ColumnName="FK_Id_Materia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pensum">
+            <EntityTypeMapping TypeName="DBALPHAModel.Pensum">
+              <MappingFragment StoreEntitySet="Pensum">
+                <ScalarProperty Name="Id_Pensum" ColumnName="Id_Pensum" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="FK_Id_Linea" ColumnName="FK_Id_Linea" />
+                <ScalarProperty Name="numSemestre" ColumnName="numSemestre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pensum_Materia">
+            <EntityTypeMapping TypeName="DBALPHAModel.Pensum_Materia">
+              <MappingFragment StoreEntitySet="Pensum_Materia">
+                <ScalarProperty Name="FK_Id_Pensum" ColumnName="FK_Id_Pensum" />
+                <ScalarProperty Name="FK_id_Materia" ColumnName="FK_id_Materia" />
+                <ScalarProperty Name="Creditos" ColumnName="Creditos" />
+                <ScalarProperty Name="semestre" ColumnName="semestre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profesor">
+            <EntityTypeMapping TypeName="DBALPHAModel.Profesor">
+              <MappingFragment StoreEntitySet="Profesor">
+                <ScalarProperty Name="Id_Profesor" ColumnName="Id_Profesor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FK_Id_Sede" ColumnName="FK_Id_Sede" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programa">
+            <EntityTypeMapping TypeName="DBALPHAModel.Programa">
+              <MappingFragment StoreEntitySet="Programa">
+                <ScalarProperty Name="Id_Programa" ColumnName="Id_Programa" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="FK_Id_Facultad" ColumnName="FK_Id_Facultad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sede">
+            <EntityTypeMapping TypeName="DBALPHAModel.Sede">
+              <MappingFragment StoreEntitySet="Sede">
+                <ScalarProperty Name="Id_Sede" ColumnName="Id_Sede" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewFacultad">
+            <EntityTypeMapping TypeName="DBALPHAModel.ViewFacultad">
+              <MappingFragment StoreEntitySet="ViewFacultad">
+                <ScalarProperty Name="Id_Facultad" ColumnName="Id_Facultad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FK_Id_Sede" ColumnName="FK_Id_Sede" />
+                <ScalarProperty Name="nombreSede" ColumnName="nombreSede" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewLinea">
+            <EntityTypeMapping TypeName="DBALPHAModel.ViewLinea">
+              <MappingFragment StoreEntitySet="ViewLinea">
+                <ScalarProperty Name="Id_Linea" ColumnName="Id_Linea" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="FK_Id_Programa" ColumnName="FK_Id_Programa" />
+                <ScalarProperty Name="nombrePrograma" ColumnName="nombrePrograma" />
+                <ScalarProperty Name="FK_Id_Facultad" ColumnName="FK_Id_Facultad" />
+                <ScalarProperty Name="nombreFacultad" ColumnName="nombreFacultad" />
+                <ScalarProperty Name="FK_Id_Sede" ColumnName="FK_Id_Sede" />
+                <ScalarProperty Name="nombreSede" ColumnName="nombreSede" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewMateria">
+            <EntityTypeMapping TypeName="DBALPHAModel.ViewMateria">
+              <MappingFragment StoreEntitySet="ViewMateria">
+                <ScalarProperty Name="Id_Materia" ColumnName="Id_Materia" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FK_Id_Programa" ColumnName="FK_Id_Programa" />
+                <ScalarProperty Name="nombrePrograma" ColumnName="nombrePrograma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewMateriaPensum">
+            <EntityTypeMapping TypeName="DBALPHAModel.ViewMateriaPensum">
+              <MappingFragment StoreEntitySet="ViewMateriaPensum">
+                <ScalarProperty Name="nombrePensum" ColumnName="nombrePensum" />
+                <ScalarProperty Name="Creditos" ColumnName="Creditos" />
+                <ScalarProperty Name="semestre" ColumnName="semestre" />
+                <ScalarProperty Name="nombreMateria" ColumnName="nombreMateria" />
+                <ScalarProperty Name="nombreLinea" ColumnName="nombreLinea" />
+                <ScalarProperty Name="FK_Id_Pensum" ColumnName="FK_Id_Pensum" />
+                <ScalarProperty Name="nombrePrograma" ColumnName="nombrePrograma" />
+                <ScalarProperty Name="nombreFacultad" ColumnName="nombreFacultad" />
+                <ScalarProperty Name="nombreSede" ColumnName="nombreSede" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewPensum">
+            <EntityTypeMapping TypeName="DBALPHAModel.ViewPensum">
+              <MappingFragment StoreEntitySet="ViewPensum">
+                <ScalarProperty Name="Id_Pensum" ColumnName="Id_Pensum" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="FK_Id_Linea" ColumnName="FK_Id_Linea" />
+                <ScalarProperty Name="nombreLinea" ColumnName="nombreLinea" />
+                <ScalarProperty Name="FK_Id_Programa" ColumnName="FK_Id_Programa" />
+                <ScalarProperty Name="nombrePrograma" ColumnName="nombrePrograma" />
+                <ScalarProperty Name="FK_Id_Facultad" ColumnName="FK_Id_Facultad" />
+                <ScalarProperty Name="nombreFacultad" ColumnName="nombreFacultad" />
+                <ScalarProperty Name="FK_Id_Sede" ColumnName="FK_Id_Sede" />
+                <ScalarProperty Name="nombreSede" ColumnName="nombreSede" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewPrograma">
+            <EntityTypeMapping TypeName="DBALPHAModel.ViewPrograma">
+              <MappingFragment StoreEntitySet="ViewPrograma">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id_Programa" ColumnName="Id_Programa" />
+                <ScalarProperty Name="FK_Id_Facultad" ColumnName="FK_Id_Facultad" />
+                <ScalarProperty Name="FK_Id_Sede" ColumnName="FK_Id_Sede" />
+                <ScalarProperty Name="nombreFacultad" ColumnName="nombreFacultad" />
+                <ScalarProperty Name="nombreSede" ColumnName="nombreSede" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Modulo_Profesor" TypeName="DBALPHAModel.Modulo_Profesor" StoreEntitySet="Modulo_Profesor">
+            <EndProperty Name="Modulo">
+              <ScalarProperty Name="Id_Modulo" ColumnName="FK_Id_Modulo" />
+            </EndProperty>
+            <EndProperty Name="Profesor">
+              <ScalarProperty Name="Id_Profesor" ColumnName="FK_Id_Profesor" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
