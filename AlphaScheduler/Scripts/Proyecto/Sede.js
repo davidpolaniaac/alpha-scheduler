@@ -6,7 +6,7 @@ function enviar(form) {
         jQuery.ajax({
             type: 'POST',
             contentType: "application/json",
-            url: 'Insert/RegisterSede/',
+            url: 'http://localhost:24973/Insert/RegisterSede/',
             crossDomain: true,
             data: formData,
             dataType: 'jsonp',

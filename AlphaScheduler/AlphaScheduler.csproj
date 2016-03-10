@@ -287,9 +287,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminLTE.min.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\user2-160x160.jpg" />
+    <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="Content\_all-skins.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -327,6 +329,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.11.3.min.js" />
     <Content Include="Scripts\jQuery-2.1.4.min.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
