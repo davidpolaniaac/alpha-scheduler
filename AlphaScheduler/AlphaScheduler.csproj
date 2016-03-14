@@ -212,6 +212,7 @@
     <Compile Include="Controllers\FacultadsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProgramasController.cs" />
     <Compile Include="Controllers\SedesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -374,6 +375,11 @@
     <Content Include="Views\Facultads\Details.cshtml" />
     <Content Include="Views\Facultads\Edit.cshtml" />
     <Content Include="Views\Facultads\Index.cshtml" />
+    <Content Include="Views\Programas\Create.cshtml" />
+    <Content Include="Views\Programas\Delete.cshtml" />
+    <Content Include="Views\Programas\Details.cshtml" />
+    <Content Include="Views\Programas\Edit.cshtml" />
+    <Content Include="Views\Programas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
