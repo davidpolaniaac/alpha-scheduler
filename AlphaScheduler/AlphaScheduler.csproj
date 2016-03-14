@@ -209,6 +209,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FacultadsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SedesController.cs" />
@@ -368,6 +369,11 @@
     <Content Include="Views\Sedes\Details.cshtml" />
     <Content Include="Views\Sedes\Edit.cshtml" />
     <Content Include="Views\Sedes\Index.cshtml" />
+    <Content Include="Views\Facultads\Create.cshtml" />
+    <Content Include="Views\Facultads\Delete.cshtml" />
+    <Content Include="Views\Facultads\Details.cshtml" />
+    <Content Include="Views\Facultads\Edit.cshtml" />
+    <Content Include="Views\Facultads\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
