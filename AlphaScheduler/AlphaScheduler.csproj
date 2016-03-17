@@ -213,6 +213,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LineasController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PensumsController.cs" />
     <Compile Include="Controllers\ProgramasController.cs" />
     <Compile Include="Controllers\SedesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -386,6 +387,11 @@
     <Content Include="Views\Lineas\Details.cshtml" />
     <Content Include="Views\Lineas\Edit.cshtml" />
     <Content Include="Views\Lineas\Index.cshtml" />
+    <Content Include="Views\Pensums\Create.cshtml" />
+    <Content Include="Views\Pensums\Delete.cshtml" />
+    <Content Include="Views\Pensums\Details.cshtml" />
+    <Content Include="Views\Pensums\Edit.cshtml" />
+    <Content Include="Views\Pensums\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
