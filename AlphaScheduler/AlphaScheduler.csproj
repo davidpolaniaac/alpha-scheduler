@@ -215,6 +215,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MateriasController.cs" />
     <Compile Include="Controllers\PensumsController.cs" />
+    <Compile Include="Controllers\ProfesorsController.cs" />
     <Compile Include="Controllers\ProgramasController.cs" />
     <Compile Include="Controllers\SedesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -398,6 +399,11 @@
     <Content Include="Views\Materias\Details.cshtml" />
     <Content Include="Views\Materias\Edit.cshtml" />
     <Content Include="Views\Materias\Index.cshtml" />
+    <Content Include="Views\Profesors\Create.cshtml" />
+    <Content Include="Views\Profesors\Delete.cshtml" />
+    <Content Include="Views\Profesors\Details.cshtml" />
+    <Content Include="Views\Profesors\Edit.cshtml" />
+    <Content Include="Views\Profesors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
