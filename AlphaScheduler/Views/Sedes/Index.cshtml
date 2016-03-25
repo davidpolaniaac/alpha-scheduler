@@ -1,39 +1,60 @@
 ﻿@model IEnumerable<AlphaScheduler.Models.Sede>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Sede";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ubicacion)
-        </th>
-        <th></th>
-    </tr>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Sede
+            <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Forms</li>
+        </ol>
+    </section>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ubicacion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Sede }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_Sede }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Sede })
-        </td>
-    </tr>
-}
 
-</table>
+    <!-- Main content -->
+    <section class="content">
+
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ubicacion)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ubicacion)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id_Sede }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id_Sede }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id_Sede })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

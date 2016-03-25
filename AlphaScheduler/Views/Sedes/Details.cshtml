@@ -4,31 +4,50 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Datails Sede
+            <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Forms</li>
+        </ol>
+    </section>
 
-<div>
-    <h4>Sede</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+    <!-- Main content -->
+    <section class="content">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ubicacion)
-        </dt>
+        <div>
+            <h4>Sede</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ubicacion)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Nombre)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Sede }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Ubicacion)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Ubicacion)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Sede }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
