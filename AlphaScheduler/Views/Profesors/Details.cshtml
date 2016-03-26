@@ -4,39 +4,67 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Datails Profesor
+            <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Forms</li>
+        </ol>
+    </section>
 
-<div>
-    <h4>Profesor</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+    <!-- Main content -->
+    <section class="content">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+        <div class="box box-primary">
+            <div>
+                <div class="box-header with-border">
+                    <h3 class="box-title">Profesor</h3>
+                </div><!-- /.box-header -->
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                <dl class="dl-horizontal">
+                    <br>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FK_Id_Sede)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Nombre)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FK_Id_Sede)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Profesor }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FK_Id_Sede)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.FK_Id_Sede)
+                    </dd>
+
+                </dl>
+            </div>
+            <div class="box-footer">
+                <p>
+
+
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Profesors",new { id = Model.Id_Profesor })';return false;">Edit</button> |
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Profesors")';return false;">Back to List</button>
+
+                </p>
+            </div>
+        </div><!-- /.box -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

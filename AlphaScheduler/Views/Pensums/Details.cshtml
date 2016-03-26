@@ -4,47 +4,75 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Datails Pensum
+            <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Forms</li>
+        </ol>
+    </section>
 
-<div>
-    <h4>Pensum</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+    <!-- Main content -->
+    <section class="content">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Codigo)
-        </dt>
+        <div class="box box-primary">
+            <div>
+                <div class="box-header with-border">
+                    <h3 class="box-title">Pensum</h3>
+                </div><!-- /.box-header -->
 
-        <dd>
-            @Html.DisplayFor(model => model.Codigo)
-        </dd>
+                <dl class="dl-horizontal">
+                    <br>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.numSemestre)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Nombre)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.numSemestre)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Codigo)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Linea.Nombre)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Codigo)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Linea.Nombre)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.numSemestre)
+                    </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Pensum }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                    <dd>
+                        @Html.DisplayFor(model => model.numSemestre)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Linea.Nombre)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Linea.Nombre)
+                    </dd>
+
+                </dl>
+            </div>
+            <div class="box-footer">
+                <p>
+
+
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Pensums",new { id = Model.Id_Pensum })';return false;">Edit</button> |
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Pensums")';return false;">Back to List</button>
+
+                </p>
+            </div>
+        </div><!-- /.box -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->

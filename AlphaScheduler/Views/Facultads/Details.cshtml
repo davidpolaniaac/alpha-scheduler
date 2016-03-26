@@ -4,31 +4,59 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Datails Facultad
+            <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Forms</li>
+        </ol>
+    </section>
 
-<div>
-    <h4>Facultad</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+    <!-- Main content -->
+    <section class="content">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Sede.Nombre)
-        </dt>
+        <div class="box box-primary">
+            <div>
+                <div class="box-header with-border">
+                    <h3 class="box-title">Facultad</h3>
+                </div><!-- /.box-header -->
 
-        <dd>
-            @Html.DisplayFor(model => model.Sede.Nombre)
-        </dd>
+                <dl class="dl-horizontal">
+                    <br>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Facultad }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                    <dd>
+                        @Html.DisplayFor(model => model.Nombre)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Sede.Nombre)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Sede.Nombre)
+                    </dd>
+
+                </dl>
+            </div>
+            <div class="box-footer">
+                <p>
+
+
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Facultads",new { id = Model.Id_Facultad })';return false;">Edit</button> |
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Facultads")';return false;">Back to List</button>
+
+                </p>
+            </div>
+        </div><!-- /.box -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
