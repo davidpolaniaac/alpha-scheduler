@@ -1,51 +1,76 @@
 ﻿@model IEnumerable<AlphaScheduler.Models.Pensum>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Pensum";
 }
 
-<h2>Index</h2>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Pensum
+            <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Forms</li>
+        </ol>
+    </section>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Codigo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.numSemestre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Linea.Nombre)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Codigo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.numSemestre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Linea.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Pensum }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_Pensum }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Pensum })
-        </td>
-    </tr>
-}
+    <!-- Main content -->
+    <section class="content">
 
-</table>
+
+        <div class="box box-primary">
+
+            <div class="box-header with-border">
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Pensums")';return false;"><h3 class="box-title">Create New</h3></button>
+            </div><!-- /.box-header -->
+            <h3 class="page-header box-title text-center">List of Pensum</h3>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Codigo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.numSemestre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Linea.Nombre)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Codigo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.numSemestre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Linea.Nombre)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id_Pensum }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id_Pensum }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id_Pensum })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div><!-- /.box -->
+    </section><!-- /.content -->
+
+</div><!-- /.content-wrapper -->

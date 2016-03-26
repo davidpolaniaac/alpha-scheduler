@@ -1,39 +1,65 @@
 ﻿@model IEnumerable<AlphaScheduler.Models.Facultad>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Facultad";
 }
 
-<h2>Index</h2>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Facultad
+            <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Forms</li>
+        </ol>
+    </section>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sede.Nombre)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sede.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id_Facultad }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id_Facultad }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id_Facultad })
-        </td>
-    </tr>
-}
+    <!-- Main content -->
+    <section class="content">
 
-</table>
+
+        <div class="box box-primary">
+
+            <div class="box-header with-border">
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Facultads")';return false;"><h3 class="box-title">Create New</h3></button>
+            </div><!-- /.box-header -->
+            <h3 class="page-header box-title text-center">List of Facultad</h3>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sede.Nombre)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sede.Nombre)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id_Facultad }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id_Facultad }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id_Facultad })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div><!-- /.box -->
+    </section><!-- /.content -->
+
+</div><!-- /.content-wrapper -->
