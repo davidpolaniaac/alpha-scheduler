@@ -22,32 +22,41 @@
     <!-- Main content -->
     <section class="content">
 
-        <div>
-            <h4>Sede</h4>
-            <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Nombre)
-                </dt>
+        <div class="box box-primary">
+            <div>
+                <div class="box-header with-border">
+                    <h3 class="box-title">Sede</h3>
+                </div><!-- /.box-header -->
+               
+                <dl class="dl-horizontal">
+                    <br>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Nombre)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Nombre)
+                    </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Ubicacion)
-                </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Ubicacion)
+                    </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Ubicacion)
-                </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Ubicacion)
+                    </dd>
 
-            </dl>
-        </div>
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Sede }) |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
+                </dl>
+            </div>
+            <div class="box-footer">
+                <p>
 
-    </section><!-- /.content -->
+
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Sedes",new { id = Model.Id_Sede })';return false;">Edit</button> |
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Sedes")';return false;">Back to List</button>
+
+                </p>
+            </div>
+        </div><!-- /.box -->
+</section><!-- /.content -->
 </div><!-- /.content-wrapper -->
