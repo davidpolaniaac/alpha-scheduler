@@ -1295,6 +1295,7 @@
     <Content Include="Views\Profesors\Details.cshtml" />
     <Content Include="Views\Profesors\Edit.cshtml" />
     <Content Include="Views\Profesors\Index.cshtml" />
+    <Content Include="Views\Calendar\Calendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
