@@ -51,6 +51,7 @@ namespace AlphaScheduler.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Sede.Add(sede);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
