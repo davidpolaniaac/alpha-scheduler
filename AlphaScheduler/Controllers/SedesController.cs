@@ -11,6 +11,7 @@ using AlphaScheduler.Models;
 
 namespace AlphaScheduler.Controllers
 {
+    [Authorize]
     public class SedesController : Controller
     {
         private DBALPHAEntities db = new DBALPHAEntities();

@@ -13,6 +13,7 @@ using DHTMLX.Scheduler.Controls;
 using AlphaScheduler.Models;
 namespace AlphaScheduler.Controllers
 {
+    [Authorize]
     public class CalendarController : Controller
     {
         public ActionResult Index()
