@@ -17,7 +17,6 @@ namespace AlphaScheduler.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Modulo()
         {
-            this.Event = new HashSet<Event>();
             this.Profesor = new HashSet<Profesor>();
         }
     
@@ -25,8 +24,6 @@ namespace AlphaScheduler.Models
         public string Nombre { get; set; }
         public int FK_Id_Materia { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Event> Event { get; set; }
         public virtual Materia Materia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Profesor> Profesor { get; set; }

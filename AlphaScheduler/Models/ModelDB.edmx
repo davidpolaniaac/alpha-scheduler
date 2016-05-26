@@ -4,20 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBALPHAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Event">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="text" Type="nvarchar" MaxLength="250" />
-          <Property Name="start_date" Type="datetime" Nullable="false" />
-          <Property Name="end_date" Type="datetime" Nullable="false" />
-          <Property Name="FK_Id_Modulo" Type="int" />
-          <Property Name="FK_Id_Profesor" Type="int" />
-          <Property Name="Modulo" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Profesor" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="DBALPHAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Facultad">
           <Key>
             <PropertyRef Name="Id_Facultad" />
@@ -227,30 +214,6 @@ advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewPrograma' no tiene definida 
           <Property Name="nombreFacultad" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="nombreSede" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Event_Modulo">
-          <End Role="Modulo" Type="Self.Modulo" Multiplicity="0..1" />
-          <End Role="Event" Type="Self.Event" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Modulo">
-              <PropertyRef Name="Id_Modulo" />
-            </Principal>
-            <Dependent Role="Event">
-              <PropertyRef Name="FK_Id_Modulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Event_Profesor">
-          <End Role="Profesor" Type="Self.Profesor" Multiplicity="0..1" />
-          <End Role="Event" Type="Self.Event" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profesor">
-              <PropertyRef Name="Id_Profesor" />
-            </Principal>
-            <Dependent Role="Event">
-              <PropertyRef Name="FK_Id_Profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Linea_Programa">
           <End Role="Programa" Type="Self.Programa" Multiplicity="1" />
           <End Role="Linea" Type="Self.Linea" Multiplicity="*" />
@@ -372,7 +335,6 @@ advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewPrograma' no tiene definida 
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DBALPHAModelStoreContainer">
-          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Facultad" EntityType="Self.Facultad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Linea" EntityType="Self.Linea" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Materia" EntityType="Self.Materia" Schema="dbo" store:Type="Tables" />
@@ -451,14 +413,6 @@ advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewPrograma' no tiene definida 
     [ViewPrograma].[nombreSede] AS [nombreSede]
     FROM [dbo].[ViewPrograma] AS [ViewPrograma]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_Event_Modulo" Association="Self.FK_Event_Modulo">
-            <End Role="Modulo" EntitySet="Modulo" />
-            <End Role="Event" EntitySet="Event" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Event_Profesor" Association="Self.FK_Event_Profesor">
-            <End Role="Profesor" EntitySet="Profesor" />
-            <End Role="Event" EntitySet="Event" />
-          </AssociationSet>
           <AssociationSet Name="FK_Linea_Programa" Association="Self.FK_Linea_Programa">
             <End Role="Programa" EntitySet="Programa" />
             <End Role="Linea" EntitySet="Linea" />
@@ -500,26 +454,10 @@ advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewPrograma' no tiene definida 
             <End Role="Facultad" EntitySet="Facultad" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBALPHAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Event">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="text" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FK_Id_Modulo" Type="Int32" />
-          <Property Name="FK_Id_Profesor" Type="Int32" />
-          <Property Name="Modulo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Profesor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Modulo1" Relationship="Self.FK_Event_Modulo" FromRole="Event" ToRole="Modulo" />
-          <NavigationProperty Name="Profesor1" Relationship="Self.FK_Event_Profesor" FromRole="Event" ToRole="Profesor" />
-        </EntityType>
         <EntityType Name="Facultad">
           <Key>
             <PropertyRef Name="Id_Facultad" />
@@ -560,7 +498,6 @@ advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewPrograma' no tiene definida 
           <Property Name="Id_Modulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FK_Id_Materia" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Event" Relationship="Self.FK_Event_Modulo" FromRole="Modulo" ToRole="Event" />
           <NavigationProperty Name="Materia" Relationship="Self.FK_Modulo_Materia" FromRole="Modulo" ToRole="Materia" />
           <NavigationProperty Name="Profesor" Relationship="Self.Modulo_Profesor" FromRole="Modulo" ToRole="Profesor" />
         </EntityType>
@@ -596,7 +533,6 @@ advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewPrograma' no tiene definida 
           <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FK_Id_Sede" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Event" Relationship="Self.FK_Event_Profesor" FromRole="Profesor" ToRole="Event" />
           <NavigationProperty Name="Modulo" Relationship="Self.Modulo_Profesor" FromRole="Profesor" ToRole="Modulo" />
         </EntityType>
         <EntityType Name="Programa">
@@ -729,30 +665,6 @@ advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewPrograma' no tiene definida 
           <Property Name="nombreFacultad" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="nombreSede" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Event_Modulo">
-          <End Role="Modulo" Type="Self.Modulo" Multiplicity="0..1" />
-          <End Role="Event" Type="Self.Event" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Modulo">
-              <PropertyRef Name="Id_Modulo" />
-            </Principal>
-            <Dependent Role="Event">
-              <PropertyRef Name="FK_Id_Modulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Event_Profesor">
-          <End Role="Profesor" Type="Self.Profesor" Multiplicity="0..1" />
-          <End Role="Event" Type="Self.Event" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Profesor">
-              <PropertyRef Name="Id_Profesor" />
-            </Principal>
-            <Dependent Role="Event">
-              <PropertyRef Name="FK_Id_Profesor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Programa_Facultad">
           <End Role="Facultad" Type="Self.Facultad" Multiplicity="1" />
           <End Role="Programa" Type="Self.Programa" Multiplicity="*" />
@@ -854,7 +766,6 @@ advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewPrograma' no tiene definida 
           <End Role="Profesor" Type="Self.Profesor" Multiplicity="*" />
         </Association>
         <EntityContainer Name="DBALPHAEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Event" EntityType="Self.Event" />
           <EntitySet Name="Facultad" EntityType="Self.Facultad" />
           <EntitySet Name="Linea" EntityType="Self.Linea" />
           <EntitySet Name="Materia" EntityType="Self.Materia" />
@@ -870,14 +781,6 @@ advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewPrograma' no tiene definida 
           <EntitySet Name="ViewMateriaPensum" EntityType="Self.ViewMateriaPensum" />
           <EntitySet Name="ViewPensum" EntityType="Self.ViewPensum" />
           <EntitySet Name="ViewPrograma" EntityType="Self.ViewPrograma" />
-          <AssociationSet Name="FK_Event_Modulo" Association="Self.FK_Event_Modulo">
-            <End Role="Modulo" EntitySet="Modulo" />
-            <End Role="Event" EntitySet="Event" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Event_Profesor" Association="Self.FK_Event_Profesor">
-            <End Role="Profesor" EntitySet="Profesor" />
-            <End Role="Event" EntitySet="Event" />
-          </AssociationSet>
           <AssociationSet Name="FK_Programa_Facultad" Association="Self.FK_Programa_Facultad">
             <End Role="Facultad" EntitySet="Facultad" />
             <End Role="Programa" EntitySet="Programa" />
@@ -914,27 +817,13 @@ advertencia 6002: La tabla o vista 'DBALPHA.dbo.ViewPrograma' no tiene definida 
             <End Role="Modulo" EntitySet="Modulo" />
             <End Role="Profesor" EntitySet="Profesor" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          </EntityContainer>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DBALPHAModelStoreContainer" CdmEntityContainer="DBALPHAEntities">
-          <EntitySetMapping Name="Event">
-            <EntityTypeMapping TypeName="DBALPHAModel.Event">
-              <MappingFragment StoreEntitySet="Event">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="text" ColumnName="text" />
-                <ScalarProperty Name="start_date" ColumnName="start_date" />
-                <ScalarProperty Name="end_date" ColumnName="end_date" />
-                <ScalarProperty Name="FK_Id_Modulo" ColumnName="FK_Id_Modulo" />
-                <ScalarProperty Name="FK_Id_Profesor" ColumnName="FK_Id_Profesor" />
-                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
-                <ScalarProperty Name="Profesor" ColumnName="Profesor" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Facultad">
             <EntityTypeMapping TypeName="DBALPHAModel.Facultad">
               <MappingFragment StoreEntitySet="Facultad">

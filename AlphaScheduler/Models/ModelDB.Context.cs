@@ -25,7 +25,6 @@ namespace AlphaScheduler.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Event> Event { get; set; }
         public virtual DbSet<Facultad> Facultad { get; set; }
         public virtual DbSet<Linea> Linea { get; set; }
         public virtual DbSet<Materia> Materia { get; set; }

@@ -84,6 +84,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -219,6 +220,7 @@
     <Compile Include="Controllers\LineasController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MateriasController.cs" />
+    <Compile Include="Controllers\ModuloesController.cs" />
     <Compile Include="Controllers\PensumsController.cs" />
     <Compile Include="Controllers\ProfesorsController.cs" />
     <Compile Include="Controllers\ProgramasController.cs" />
@@ -227,8 +229,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Event.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+    <Compile Include="Models\DataEvent.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataEvent.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\Facultad.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
@@ -1224,6 +1228,11 @@
     <Content Include="Content\build\less\timeline.less" />
     <Content Include="Content\build\less\users-list.less" />
     <Content Include="Content\build\less\variables.less" />
+    <Content Include="Models\DataEvent.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataEvent.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Properties\PublishProfiles\AlphaScheduler.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler-responsive.js" />
@@ -1485,6 +1494,11 @@
     <Content Include="Views\Profesors\Edit.cshtml" />
     <Content Include="Views\Profesors\Index.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Moduloes\Create.cshtml" />
+    <Content Include="Views\Moduloes\Delete.cshtml" />
+    <Content Include="Views\Moduloes\Details.cshtml" />
+    <Content Include="Views\Moduloes\Edit.cshtml" />
+    <Content Include="Views\Moduloes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1501,7 +1515,13 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Models\DataEvent.dbml.layout">
+      <DependentUpon>DataEvent.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

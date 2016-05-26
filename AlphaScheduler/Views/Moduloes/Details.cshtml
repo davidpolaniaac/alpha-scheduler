@@ -1,0 +1,62 @@
+﻿@model AlphaScheduler.Models.Modulo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Datails Modulo
+            <small>Control panel</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Forms</li>
+        </ol>
+    </section>
+
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="box box-primary">
+            <div>
+                <div class="box-header with-border">
+                    <h3 class="box-title">Sede</h3>
+                </div><!-- /.box-header -->
+                <dl class="dl-horizontal">
+                    <br>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Nombre)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Materia.Nombre)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Materia.Nombre)
+                    </dd>
+
+                </dl>
+            </div>
+            <div class="box-footer">
+                <p>
+
+
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Moduloes",new { id = Model.Id_Modulo })';return false;">Edit</button> |
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Moduloes")';return false;">Back to List</button>
+
+                </p>
+            </div>
+        </div><!-- /.box -->
+    </section><!-- /.content -->
+</div><!-- /.content-wrapper -->
