@@ -9,6 +9,12 @@ using System.Web;
 using System.Web.Mvc;
 using AlphaScheduler.Models;
 
+
+/* 
+    Esta clase se dedica a la gestión de las 
+    lineas de profundizacion, que se encuentran 
+    asociadas a un programa academico.
+*/
 namespace AlphaScheduler.Controllers
 {
     [Authorize]

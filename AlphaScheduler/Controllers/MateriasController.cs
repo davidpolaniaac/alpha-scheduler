@@ -8,7 +8,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AlphaScheduler.Models;
-
+/*
+    esta clase sirve para crear, eliminar y editar materias o asignaturas.
+*/
 namespace AlphaScheduler.Controllers
 {
     [Authorize]

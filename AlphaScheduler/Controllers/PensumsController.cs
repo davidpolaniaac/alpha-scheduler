@@ -9,6 +9,9 @@ using System.Web;
 using System.Web.Mvc;
 using AlphaScheduler.Models;
 
+/*
+    Esta clase se dedica a la gestion de la creacion, edicion y aliminacion de los pensum.  
+*/
 namespace AlphaScheduler.Controllers
 {
     [Authorize]

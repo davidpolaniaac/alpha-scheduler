@@ -9,6 +9,9 @@ using System.Web;
 using System.Web.Mvc;
 using AlphaScheduler.Models;
 
+/*
+    Gestiona la informacion de las sedes, tanto como: crear, editar y eliminar las sedes.
+*/
 namespace AlphaScheduler.Controllers
 {
     [Authorize]

@@ -9,6 +9,11 @@ using System.Web;
 using System.Web.Mvc;
 using AlphaScheduler.Models;
 
+/*
+    Esta clase se encarga de la crear, eliminar,
+    editar informacion relacionado a facultades.
+*/
+
 namespace AlphaScheduler.Controllers
 {
     [Authorize]

@@ -9,6 +9,11 @@ using System.Web;
 using System.Web.Mvc;
 using AlphaScheduler.Models;
 
+
+
+/*
+    Gestionar la creacion, edicion y eliminacion de profesores.  
+*/
 namespace AlphaScheduler.Controllers
 {
     [Authorize]

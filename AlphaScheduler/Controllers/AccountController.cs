@@ -9,7 +9,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AlphaScheduler.Models;
-
+/*
+    Esta clase esta enfocada en el uso y manejo de las cuentas de usuarios,
+    registro, inicio de sesión, passwords etc.
+*/
 namespace AlphaScheduler.Controllers
 {
     [Authorize]

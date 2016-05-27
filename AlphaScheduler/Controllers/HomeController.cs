@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using AlphaScheduler.Models;
 
+
+/*
+    Esta clase controla ciertos datos que se muestran en la parte supeior del index.  
+*/
 namespace AlphaScheduler.Controllers
 {
     [Authorize]

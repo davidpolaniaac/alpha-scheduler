@@ -8,6 +8,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AlphaScheduler.Models;
 
+/*
+    Esta clase se encarga de gestionar la informacion de usuarios y que rol obtendran.
+*/
 namespace AlphaScheduler.Controllers
 {
     [Authorize]
