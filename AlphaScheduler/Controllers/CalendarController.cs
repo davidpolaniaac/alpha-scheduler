@@ -23,6 +23,14 @@ namespace AlphaScheduler.Controllers
             //Being initialized in that way, scheduler will use CalendarController.Data as a the datasource and CalendarController.Save to process changes
             var scheduler = new DHXScheduler(this);
 
+            scheduler.Extensions.Add(SchedulerExtensions.Extension.PDF);
+
+            var year = new YearView();//initializes the view
+            scheduler.Views.Add(year);//adds the view to the scheduler
+
+            var agenda = new AgendaView();//initializes the view
+            scheduler.Views.Add(agenda);//adds the view to the scheduler
+
             var modulos = new LightboxSelect("FK_Id_Modulo", "Modulo");
 
             var items = new List<object>();
@@ -46,17 +54,19 @@ namespace AlphaScheduler.Controllers
 
             profesores.AddOptions(itemsProfesor);
 
+
+            var time = new LightboxTime("Time");
+            var nota = new LightboxText("text", "Nota");
             
             scheduler.Lightbox.Add(modulos);
             scheduler.Lightbox.Add(profesores);
-            scheduler.Lightbox.AddDefaults();
-        
-
-         
+            scheduler.Lightbox.Add(time);
+            scheduler.Lightbox.Add(nota);
+            
             scheduler.LoadData = true;
             scheduler.EnableDataprocessor = true;
-
-            //
+           
+            
             scheduler.BeforeInit.Add(string.Format("initResponsive({0})", scheduler.Name));
 
             return View(scheduler);
@@ -65,31 +75,7 @@ namespace AlphaScheduler.Controllers
         public ContentResult Data()
         {
 
-            //var data = new SchedulerAjaxData(
-            //        new List<CalendarEvent>{
-            //            new CalendarEvent{
-            //                id = 1,
-            //                text = "Sample Event",
-            //                start_date = new DateTime(2012, 09, 03, 6, 00, 00),
-            //                end_date = new DateTime(2012, 09, 03, 8, 00, 00)
-            //            },
-            //            new CalendarEvent{
-            //                id = 2,
-            //                text = "New Event",
-            //                start_date = new DateTime(2012, 09, 05, 9, 00, 00),
-            //                end_date = new DateTime(2012, 09, 05, 12, 00, 00)
-            //            },
-            //            new CalendarEvent{
-            //                id = 3,
-            //                text = "Multiday Event",
-            //                start_date = new DateTime(2012, 09, 03, 10, 00, 00),
-            //                end_date = new DateTime(2012, 09, 10, 12, 00, 00)
-            //            }
-            //        }
-            //    );
-
-
-            //return (ContentResult)data;
+        
             return new SchedulerAjaxData(new DataEventDataContext().Event);
         }
 
@@ -106,7 +92,13 @@ namespace AlphaScheduler.Controllers
                 switch (action.Type)
                 {
                     case DataActionTypes.Insert:
+                        if (changedEvent.text== "New event")
+                        {
+                            changedEvent.text = "";
+                        }
+                        changedEvent.text = db.Modulo.SingleOrDefault(x=>x.Id_Modulo==changedEvent.FK_Id_Modulo).Nombre+"\n"+ db.Profesor.SingleOrDefault(x => x.Id_Profesor == changedEvent.FK_Id_Profesor).Nombre+"\n"+changedEvent.text;
                         ctx.Event.InsertOnSubmit(changedEvent);
+                        
                         break;
                     case DataActionTypes.Delete:
 

@@ -11,7 +11,7 @@ namespace AlphaScheduler.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
     public partial class Facultad
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +21,9 @@ namespace AlphaScheduler.Models
         }
     
         public int Id_Facultad { get; set; }
+        [DisplayName("Nombre Faculta")]
         public string Nombre { get; set; }
+        [DisplayName("Sede")]
         public int FK_Id_Sede { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

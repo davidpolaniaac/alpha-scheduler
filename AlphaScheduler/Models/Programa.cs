@@ -11,7 +11,7 @@ namespace AlphaScheduler.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
     public partial class Programa
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,6 +24,7 @@ namespace AlphaScheduler.Models
         public int Id_Programa { get; set; }
         public string Nombre { get; set; }
         public string Codigo { get; set; }
+        [DisplayName("Facultad")]
         public int FK_Id_Facultad { get; set; }
     
         public virtual Facultad Facultad { get; set; }

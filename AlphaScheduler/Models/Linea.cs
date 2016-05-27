@@ -11,7 +11,7 @@ namespace AlphaScheduler.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
     public partial class Linea
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,6 +23,7 @@ namespace AlphaScheduler.Models
         public int Id_Linea { get; set; }
         public string Nombre { get; set; }
         public string Codigo { get; set; }
+        [DisplayName("Programa")]
         public int FK_Id_Programa { get; set; }
     
         public virtual Programa Programa { get; set; }

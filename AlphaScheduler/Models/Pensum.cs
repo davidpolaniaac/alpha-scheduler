@@ -11,7 +11,7 @@ namespace AlphaScheduler.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
     public partial class Pensum
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +23,9 @@ namespace AlphaScheduler.Models
         public int Id_Pensum { get; set; }
         public string Nombre { get; set; }
         public string Codigo { get; set; }
+        [DisplayName("Linea")]
         public int FK_Id_Linea { get; set; }
+        [DisplayName("Num Semestre")]
         public Nullable<int> numSemestre { get; set; }
     
         public virtual Linea Linea { get; set; }
