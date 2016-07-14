@@ -21,7 +21,9 @@ namespace AlphaScheduler.Models
         }
     
         public int Id_Pensum { get; set; }
+        [DisplayName("Nombre de Pensum")]
         public string Nombre { get; set; }
+        [DisplayName("NRC")]
         public string Codigo { get; set; }
         [DisplayName("Linea")]
         public int FK_Id_Linea { get; set; }

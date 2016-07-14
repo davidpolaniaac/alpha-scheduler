@@ -22,7 +22,9 @@ namespace AlphaScheduler.Models
         }
     
         public int Id_Programa { get; set; }
+        [DisplayName("Nombre de Programa")]
         public string Nombre { get; set; }
+        [DisplayName("NRC")]
         public string Codigo { get; set; }
         [DisplayName("Facultad")]
         public int FK_Id_Facultad { get; set; }

@@ -11,7 +11,7 @@ namespace AlphaScheduler.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
     public partial class Modulo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +21,7 @@ namespace AlphaScheduler.Models
         }
     
         public int Id_Modulo { get; set; }
+        [DisplayName("Nombre Modulo")]
         public string Nombre { get; set; }
         public int FK_Id_Materia { get; set; }
     

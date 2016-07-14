@@ -98,7 +98,7 @@ namespace AlphaScheduler.Controllers
                         }
                         changedEvent.text = db.Modulo.SingleOrDefault(x=>x.Id_Modulo==changedEvent.FK_Id_Modulo).Nombre+"\n"+ db.Profesor.SingleOrDefault(x => x.Id_Profesor == changedEvent.FK_Id_Profesor).Nombre+"\n"+changedEvent.text;
                         ctx.Event.InsertOnSubmit(changedEvent);
-                        
+                      
                         break;
                     case DataActionTypes.Delete:
 
